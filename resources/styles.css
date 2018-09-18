@@ -1,34 +1,71 @@
 .background {
-  viewport-fill: black;
+  viewport-fill: #36384c;
 }
 
 .time {
   font-size: 80;
   font-family: System-Bold;
   text-length: 32;
-  text-anchor: middle;
-  fill: white;
+  text-anchor: start;
+  fill: #e9dccd;
 }
 
 .tiny {
   font-size: 20;
   font-family: System-Bold;
   text-length: 32;
-  text-anchor: middle;
-  fill: grey;
+  fill: #e9dccd;
+}
+
+.bitCircle {
+  r: 6%;
+  fill: red
+}
+
+.bitRectangle {
+}
+
+.bitRectangleBorder {
+  fill: #36384c;
+}
+
+#minute32 {
+}
+
+#minute16 {
+}
+
+#minute8 {
+}
+
+#minute4 {
+}
+
+#minute2 {
+}
+
+#minute1 {
+}
+
+.bitText {
+  y: 2%;
+  fill: white;
+  font-size: 20;
+  text-anchor: start;
 }
 
 #hours {
-  x: 50%;
-  y: 50%-20;
+  x: 5%;
+  y: 30%-20;
 }
 
 #minutes {
   x: 50%;
-  y: 50%+60;
+  y: 30%+60;
 }
 
 #smallTime {
-  x: 50%;
+  x: 100%-10;
   y: 50%+100;
+  text-anchor: end;
 }
