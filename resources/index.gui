@@ -1,0 +1,5 @@
+<svg class="background">
+  <text id="hours" class="time" />
+  <text id="minutes" class="time" />
+  <text id="smallTime" class="tiny" />
+</svg>

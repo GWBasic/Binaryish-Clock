@@ -1,0 +1,19 @@
+{
+  "fitbit": {
+    "appUUID": "d9e1692c-32c6-468a-b7a7-5f1e9aa33cb9",
+    "appType": "clockface",
+    "appDisplayName": "Binary clock",
+    "iconFile": "resources/icon.png",
+    "wipeColor": "",
+    "requestedPermissions": [],
+    "buildTargets": [
+      "higgs",
+      "meson"
+    ],
+    "i18n": {
+      "en": {
+        "name": "Binary clock"
+      }
+    }
+  }
+}
