@@ -5,7 +5,10 @@
     "appDisplayName": "Binary clock",
     "iconFile": "resources/icon.png",
     "wipeColor": "",
-    "requestedPermissions": [],
+    "requestedPermissions": [
+      "access_activity",
+      "access_user_profile"
+    ],
     "buildTargets": [
       "higgs",
       "meson"
