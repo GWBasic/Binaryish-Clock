@@ -25,32 +25,23 @@ var caloriesStringPattern = smallCaloriesLabel.text;
 const TOTAL_SECONDS_IN_MINUTE = 60;
 const TOTAL_SECONDS_IN_HOUR = 60 * 60;
 
+function getPowerObject(power) {
+  return {
+    power: power,
+    minuteElement: document.getElementById(`minute${power}`),
+    onElement: document.getElementById(`minute${power}_On`),
+    offElement: document.getElementById(`minute${power}_Off`),
+  };
+};
+
 const bits = [
-  {
-    power: 32,
-    minuteGroup: document.getElementById("minute32")
-  },
-  {
-    power: 16,
-    minuteGroup: document.getElementById("minute16")
-  },
-  {
-    power: 8,
-    minuteGroup: document.getElementById("minute8")
-  },
-  {
-    power: 4,
-    minuteGroup: document.getElementById("minute4")
-  },
-  {
-    power: 2,
-    minuteGroup: document.getElementById("minute2")
-  },
-  {
-    power: 1,
-    minuteGroup: document.getElementById("minute1")
-  },
-];
+  getPowerObject(32),
+  getPowerObject(16),
+  getPowerObject(8),
+  getPowerObject(4),
+  getPowerObject(2),
+  getPowerObject(1)];
+
 
 // Update the <text> element every tick with the current time
 clock.ontick = (evt) => {
@@ -80,10 +71,14 @@ clock.ontick = (evt) => {
   
   bits.forEach(function(bit){
     if (remainingBinaryMinutes >= bit.power) {
+      // On
       remainingBinaryMinutes -= bit.power;
-      bit.minuteGroup.style.visibility = "visible";
+      bit.onElement.style.visibility = "visible";
+      bit.offElement.style.visibility = "hidden";
     } else {
-      bit.minuteGroup.style.visibility = "hidden";
+      // Off      
+      bit.offElement.style.visibility = "visible";
+      bit.onElement.style.visibility = "hidden";
     }  
   });
 

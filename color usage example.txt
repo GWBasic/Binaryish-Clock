@@ -1,0 +1,80 @@
+<g id="minutesBinary">
+    <g id="minute32">
+      <!-- Fresh -->
+      <rect width="100%" height="70%" class="bitRectangleBorder" />
+      <gradientRect x="3" y="3" width="100%-6" height="70%-6" class="bitRectangle"
+          gradient-type="bilinear"
+          gradient-x1="0" gradient-y1="0"
+          gradient-x2="100%" gradient-y2="35%"
+          gradient-color1="#849974"
+          gradient-color2="#B4C9A4"
+          gradient-color3="#546944"
+          gradient-color4="#B4C9A4" />      
+      <text class="bitText" x="4" y="58%">30</text>
+    </g>
+    <g id="minute16" transform="translate(26%, 18%)">
+      <!-- Burgundy -->
+      <rect width="70%" height="50%" class="bitRectangleBorder" />
+      <gradientRect x="3" y="3" width="70%-6" height="50%-6" class="bitRectangle"
+          gradient-type="bilinear"
+          gradient-x1="0" gradient-y1="0"
+          gradient-x2="70%" gradient-y2="25%"
+          gradient-color1="#613a43"
+          gradient-color2="#916A73"
+          gradient-color3="#310A13"
+          gradient-color4="#613a43" />      
+      <text class="bitText" x="4" y="40%">15</text>
+    </g>
+    <g id="minute8" transform="translate(42%, 31%)">
+      <!-- Petal -->
+      <rect width="50%" height="35%" class="bitRectangleBorder" />
+      <gradientRect x="3" y="3" width="50%-6" height="35%-6" class="bitRectangle"
+          gradient-type="bilinear"
+          gradient-x1="0" gradient-y1="0"
+          gradient-x2="50%" gradient-y2="17%"
+          gradient-color1="#e3bab3"
+          gradient-color2="#ffEAE3"
+          gradient-color3="#B38A83"
+          gradient-color4="#e3bab3" />      
+      <text class="bitText" x="4" y="27%">7&frac12;</text>
+    </g>
+    <g id="minute4" transform="translate(53%, 39%)">
+      <!-- Dark Fresh -->
+      <rect width="35%" height="25%" class="bitRectangleBorder" />
+      <gradientRect x="3" y="3" width="35%-6" height="25%-6" class="bitRectangle"
+          gradient-type="bilinear"
+          gradient-x1="0" gradient-y1="0"
+          gradient-x2="35%" gradient-y2="12%"
+          gradient-color1="#546944"
+          gradient-color2="#849974"
+          gradient-color3="#243914"
+          gradient-color4="#546944" />      
+      <text class="bitText" x="4" y="19%">3&frac14;</text>
+    </g>
+    <g id="minute2" transform="translate(62%, 44%)">
+      <!-- Dark Burgundy -->
+      <gradientRect width="25%" height="18%" class="bitRectangleBorder" />
+      <gradientRect x="3" y="3" width="25%-6" height="18%-6" class="bitRectangle"
+          gradient-type="bilinear"
+          gradient-x1="0" gradient-y1="0"
+          gradient-x2="12%" gradient-y2="9%"
+          gradient-color1="#310A13"
+          gradient-color2="#613a43"
+          gradient-color3="#010000"
+          gradient-color4="#310A13" />      
+      <text class="bitText" x="4" y="14%">2</text>
+    </g>
+    <g id="minute1" transform="translate(68%, 47%)">
+      <!-- Dark Petal -->
+      <rect width="17%" height="13%" class="bitRectangleBorder" />
+      <gradientRect x="3" y="3" width="17%-6" height="13%-6" class="bitRectangle"
+          gradient-type="bilinear"
+          gradient-x1="0" gradient-y1="0"
+          gradient-x2="8%" gradient-y2="6%"
+          gradient-color1="#B38A83"
+          gradient-color2="#e3bab3"
+          gradient-color3="#835A53"
+          gradient-color4="#B38A83" />      
+      <text class="bitText" x="4" y="11%">1</text>
+    </g>
+  </g>

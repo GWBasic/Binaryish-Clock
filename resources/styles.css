@@ -17,12 +17,26 @@
   fill: #e9dccd;
 }
 
-.bitRectangle {
+.bitCircle {
 }
 
-.bitRectangleBorder {
-  fill: #36384c;
+.bitCircle_On {
+  r: 8%;
+  fill: #B4C9A4
 }
+
+.bitCircle_Off {
+  r: 4%;
+  fill: #546944
+}
+
+.bitText {
+  y: 2%;
+  fill: #36384c;
+  font-size: 20;
+  text-anchor: middle;
+}
+
 
 #minute32 {
 }
@@ -40,13 +54,6 @@
 }
 
 #minute1 {
-}
-
-.bitText {
-  y: 2%;
-  fill: white;
-  font-size: 20;
-  text-anchor: start;
 }
 
 #hours {
