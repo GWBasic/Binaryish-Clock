@@ -1,34 +1,67 @@
 <svg class="background">
   
-  <g transform="translate(10%, 45%)">
+  <g id="hourBits" transform="translate(10%, 20%)">
+    <g id="hourPM" transform="translate(0%, 0)">
+      <circle class="hourBitCircle_On" id="hourPM_On" />
+      <circle class="hourBitCircle_Off" id="hourPM_Off" />
+      <text class="bitText">PM</text>
+    </g>
+    <g id="hour16" transform="translate(16%, 0)">
+      <circle class="hourBitCircle_On" id="hour16_On" />
+      <circle class="hourBitCircle_Off" id="hour16_Off" />
+      <text class="bitText">16</text>
+    </g>
+    <g id="hour8" transform="translate(32%, 0)">
+      <circle class="hourBitCircle_On" id="hour8_On" />
+      <circle class="hourBitCircle_Off" id="hour8_Off" />
+      <text class="bitText">8</text>
+    </g>
+     <g id="hour4" transform="translate(48%, 0)">
+      <circle class="hourBitCircle_On" id="hour4_On" />
+      <circle class="hourBitCircle_Off" id="hour4_Off" />
+      <text class="bitText">4</text>
+    </g>
+     <g id="hour2" transform="translate(64%, 0)">
+      <circle class="hourBitCircle_On" id="hour2_On" />
+      <circle class="hourBitCircle_Off" id="hour2_Off" />
+      <text class="bitText">2</text>
+    </g>
+     <g id="hour1" transform="translate(80%, 0)">
+      <circle class="hourBitCircle_On" id="hour1_On" />
+      <circle class="hourBitCircle_Off" id="hour1_Off" />
+      <text class="bitText">1</text>
+    </g>
+  </g>
+  
+  <g id="minuteBits" transform="translate(10%, 45%)">
     <g id="minute32">
-      <circle class="bitCircle_On" id="minute32_On" />
-      <circle class="bitCircle_Off" id="minute32_Off" />
+      <circle class="minuteBitCircle_On" id="minute32_On" />
+      <circle class="minuteBitCircle_Off" id="minute32_Off" />
       <text class="bitText">30</text>
     </g>
      <g id="minute16" transform="translate(16%, 0)">
-      <circle class="bitCircle_On" id="minute16_On" />
-      <circle class="bitCircle_Off" id="minute16_Off" />
+      <circle class="minuteBitCircle_On" id="minute16_On" />
+      <circle class="minuteBitCircle_Off" id="minute16_Off" />
       <text class="bitText">15</text>
     </g>
      <g id="minute8" transform="translate(32%, 0)">
-      <circle class="bitCircle_On" id="minute8_On" />
-      <circle class="bitCircle_Off" id="minute8_Off" />
+      <circle class="minuteBitCircle_On" id="minute8_On" />
+      <circle class="minuteBitCircle_Off" id="minute8_Off" />
       <text class="bitText">7&frac12;</text>
     </g>
      <g id="minute4" transform="translate(48%, 0)">
-      <circle class="bitCircle_On" id="minute4_On" />
-      <circle class="bitCircle_Off" id="minute4_Off" />
+      <circle class="minuteBitCircle_On" id="minute4_On" />
+      <circle class="minuteBitCircle_Off" id="minute4_Off" />
       <text class="bitText">3&frac14;</text>
     </g>
      <g id="minute2" transform="translate(64%, 0)">
-      <circle class="bitCircle_On" id="minute2_On" />
-      <circle class="bitCircle_Off" id="minute2_Off" />
+      <circle class="minuteBitCircle_On" id="minute2_On" />
+      <circle class="minuteBitCircle_Off" id="minute2_Off" />
       <text class="bitText">2</text>
     </g>
      <g id="minute1" transform="translate(80%, 0)">
-      <circle class="bitCircle_On" id="minute1_On" />
-      <circle class="bitCircle_Off" id="minute1_Off" />
+      <circle class="minuteBitCircle_On" id="minute1_On" />
+      <circle class="minuteBitCircle_Off" id="minute1_Off" />
       <text class="bitText">1</text>
     </g>
   </g>
@@ -44,10 +77,6 @@
       charcoal: #36384c
   -->
   
-  
-  
-  
-  <text id="hours" class="time" />
   <text id="smallTime" class="tiny" />
   <text id="smallDate" class="tiny" />
   <text id="smallSteps" class="tiny">## &#128694;</text>

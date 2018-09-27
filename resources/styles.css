@@ -17,17 +17,24 @@
   fill: #e9dccd;
 }
 
-.bitCircle {
-}
-
-.bitCircle_On {
+.minuteBitCircle_On {
   r: 8%;
   fill: #B4C9A4
 }
 
-.bitCircle_Off {
+.minuteBitCircle_Off {
   r: 4%;
   fill: #546944
+}
+
+.hourBitCircle_On {
+  r: 8%;
+  fill: #e3bab3
+}
+
+.hourBitCircle_Off {
+  r: 4%;
+  fill: #B38A83
 }
 
 .bitText {
@@ -35,25 +42,6 @@
   fill: #36384c;
   font-size: 20;
   text-anchor: middle;
-}
-
-
-#minute32 {
-}
-
-#minute16 {
-}
-
-#minute8 {
-}
-
-#minute4 {
-}
-
-#minute2 {
-}
-
-#minute1 {
 }
 
 #hours {

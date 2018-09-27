@@ -9,13 +9,17 @@ import { user } from "user-profile";
 clock.granularity = "seconds";
 
 // Get a handle on the <text> element
-const hoursLabel = document.getElementById("hours");
 const smallTimeLabel = document.getElementById("smallTime");
 const smallDateLabel = document.getElementById("smallDate");
 const smallStepsLabel = document.getElementById("smallSteps");
 const smallRestingHeartRateLabel = document.getElementById("smallRestingHeartRate");
 const smallFloorsLabel = document.getElementById("smallFloors");
 const smallCaloriesLabel = document.getElementById("smallCalories");
+
+const hour16Element = document.getElementById("hour16");
+const hourPMElement = document.getElementById("hourPM");
+const hourPM_OnElement = document.getElementById("hourPM_On");
+const hourPM_OffElement = document.getElementById("hourPM_Off");
 
 var stepsStringPattern = smallStepsLabel.text;
 var restingHeartRateStringPattern = smallRestingHeartRateLabel.text;
@@ -25,54 +29,39 @@ var caloriesStringPattern = smallCaloriesLabel.text;
 const TOTAL_SECONDS_IN_MINUTE = 60;
 const TOTAL_SECONDS_IN_HOUR = 60 * 60;
 
-function getPowerObject(power) {
+function getPowerObject(unit, power) {
   return {
     power: power,
-    minuteElement: document.getElementById(`minute${power}`),
-    onElement: document.getElementById(`minute${power}_On`),
-    offElement: document.getElementById(`minute${power}_Off`),
+    minuteElement: document.getElementById(`${unit}${power}`),
+    onElement: document.getElementById(`${unit}${power}_On`),
+    offElement: document.getElementById(`${unit}${power}_Off`),
   };
 };
 
-const bits = [
-  getPowerObject(32),
-  getPowerObject(16),
-  getPowerObject(8),
-  getPowerObject(4),
-  getPowerObject(2),
-  getPowerObject(1)];
+const hourBits = [
+  getPowerObject("hour", 16),
+  getPowerObject("hour", 8),
+  getPowerObject("hour", 4),
+  getPowerObject("hour", 2),
+  getPowerObject("hour", 1)
+];
 
+const minuteBits = [
+  getPowerObject("minute", 32),
+  getPowerObject("minute", 16),
+  getPowerObject("minute", 8),
+  getPowerObject("minute", 4),
+  getPowerObject("minute", 2),
+  getPowerObject("minute", 1)
+];
 
-// Update the <text> element every tick with the current time
-clock.ontick = (evt) => {
-  let date = evt.date;
-  let hours = date.getHours();
-  if (preferences.clockDisplay === "12h") {
-    // 12h format
-    hours = hours % 12 || 12;
-  } else {
-    // 24h format
-    hours = util.zeroPad(hours);
-  }
-  
-  let minutes = date.getMinutes();
-  let seconds = date.getSeconds();
-  let minutesText = util.zeroPad(date.getMinutes());
-  let secondsText = util.zeroPad(date.getSeconds());
-  
-  hoursLabel.text = `${hours}`;
-  
-  let totalSecondsInHour = (minutes * TOTAL_SECONDS_IN_MINUTE) + seconds;  
-  
-  let hourPercent = totalSecondsInHour / TOTAL_SECONDS_IN_HOUR;
-  let binaryMinutes = hourPercent * 64;
-  
-  var remainingBinaryMinutes = binaryMinutes;
+function updateBits(value, bits) {
+  var remainingValue = value;
   
   bits.forEach(function(bit){
-    if (remainingBinaryMinutes >= bit.power) {
+    if (remainingValue >= bit.power) {
       // On
-      remainingBinaryMinutes -= bit.power;
+      remainingValue -= bit.power;
       bit.onElement.style.visibility = "visible";
       bit.offElement.style.visibility = "hidden";
     } else {
@@ -81,6 +70,46 @@ clock.ontick = (evt) => {
       bit.onElement.style.visibility = "hidden";
     }  
   });
+}
+
+// Update the <text> element every tick with the current time
+clock.ontick = (evt) => {
+  let date = evt.date;
+  let hours = date.getHours();
+  if (preferences.clockDisplay === "12h") {
+    // 12h format
+    var pm = hours >= 12;
+    hours = hours % 12 || 12;
+    hourPMElement.style.display = "inline";
+    hour16Element.style.display = "none";
+    
+    if (pm) {
+      hourPM_OnElement.style.visibility = "visible";
+      hourPM_OffElement.style.visibility = "hidden";
+    } else {
+      hourPM_OffElement.style.visibility = "hidden";
+      hourPM_OnElement.style.visibility = "visible";
+    }
+  } else {
+    // 24h format
+    hours = util.zeroPad(hours);
+    hour16Element.style.display = "inline";
+    hourPMElement.style.display = "none";
+  }
+  
+  updateBits(hours, hourBits);
+  
+  let minutes = date.getMinutes();
+  let seconds = date.getSeconds();
+  let minutesText = util.zeroPad(date.getMinutes());
+  let secondsText = util.zeroPad(date.getSeconds());
+  
+  let totalSecondsInHour = (minutes * TOTAL_SECONDS_IN_MINUTE) + seconds;  
+  
+  let hourPercent = totalSecondsInHour / TOTAL_SECONDS_IN_HOUR;
+  let binaryMinutes = hourPercent * 64;
+  
+  updateBits(binaryMinutes, minuteBits);
 
   var dateString = date.toString();
   let yearString = date.getFullYear().toString();
