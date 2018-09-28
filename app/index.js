@@ -4,6 +4,7 @@ import { preferences } from "user-settings";
 import * as util from "../common/utils";
 import { today } from "user-activity";
 import { user } from "user-profile";
+import { display } from "display";
 
 // Update the clock every second
 clock.granularity = "seconds";
@@ -11,17 +12,6 @@ clock.granularity = "seconds";
 // Get a handle on the <text> element
 const smallTimeLabel = document.getElementById("smallTime");
 const smallDateLabel = document.getElementById("smallDate");
-/*
-const smallStepsLabel = document.getElementById("smallSteps");
-const smallRestingHeartRateLabel = document.getElementById("smallRestingHeartRate");
-const smallFloorsLabel = document.getElementById("smallFloors");
-const smallCaloriesLabel = document.getElementById("smallCalories");*/
-
-/*
-var stepsStringPattern = smallStepsLabel.text;
-var restingHeartRateStringPattern = smallRestingHeartRateLabel.text;
-var floorsStringPattern = smallFloorsLabel.text;
-var caloriesStringPattern = smallCaloriesLabel.text;*/
 
 const TOTAL_SECONDS_IN_MINUTE = 60;
 const TOTAL_SECONDS_IN_HOUR = 60 * 60;
@@ -52,6 +42,15 @@ const minuteBits = [
   getPowerObject("minute", 1)
 ];
 
+const secondBits = [
+  getPowerObject("second", 32),
+  getPowerObject("second", 16),
+  getPowerObject("second", 8),
+  getPowerObject("second", 4),
+  getPowerObject("second", 2),
+  getPowerObject("second", 1)
+];
+
 function updateBits(value, bits) {
   var remainingValue = value;
   
@@ -75,9 +74,31 @@ function updateBits(value, bits) {
   });
 }
 
-// Update the <text> element every tick with the current time
-clock.ontick = (evt) => {
-  let date = evt.date;
+var intervalId = null;
+display.onchange = function() { enableDisableInterval(); };
+
+function enableDisableInterval() {
+  if (display.on) {
+    // Screen is on
+    render();
+    
+    // TODO: Optimize the framereate with settimeout
+    // At the end of render, schedlue 0.87890625 seconds in the future, but be smart enough
+    // to render around the middle of the bit-second. This way the risk of skew causing a bit second
+    // to show twice is low
+    setInterval(function() { render(); }, 1000 / 16);
+  } else {
+    // Screen is off
+    if (intervalId != null) {
+      clearInterval(intervalId);
+    }
+  }
+}
+
+enableDisableInterval();
+
+function render() {
+  var date = new Date();
   let hours24 = date.getHours();
   var hours;
   var amPm;
@@ -101,34 +122,27 @@ clock.ontick = (evt) => {
   
   let minutes = date.getMinutes();
   let seconds = date.getSeconds();
+  let milliseconds = date.getMilliseconds();
   let minutesText = util.zeroPad(date.getMinutes());
   let secondsText = util.zeroPad(date.getSeconds());
   
-  let totalSecondsInHour = (minutes * TOTAL_SECONDS_IN_MINUTE) + seconds;  
+  let totalSecondsInHour = (minutes * TOTAL_SECONDS_IN_MINUTE) + seconds + (milliseconds / 1000);  
   
   let hourPercent = totalSecondsInHour / TOTAL_SECONDS_IN_HOUR;
   let binaryMinutes = hourPercent * 64;
   
   updateBits(binaryMinutes, minuteBits);
+  
+  let binaryMinutePercent = binaryMinutes - Math.floor(binaryMinutes);
+  let binarySeconds = binaryMinutePercent * 64;
+  
+  updateBits(binarySeconds, secondBits);
 
   var dateString = date.toString();
   let yearString = date.getFullYear().toString();
   var indexOfYear = dateString.indexOf(yearString);
   dateString = dateString.substring(0, indexOfYear + yearString.length);
-  
-  /*
-  var steps = today.local.steps || 0;
-  smallStepsLabel.text = stepsStringPattern.replace("##", steps);
-  
-  var bpm = user.restingHeartRate || "?";
-  smallRestingHeartRateLabel.text = restingHeartRateStringPattern.replace("##", bpm);
-  
-  var floors = today.local.elevationGain || 0;
-  smallFloorsLabel.text = floorsStringPattern.replace("##", floors);
-
-  var calories = today.local.calories || 0;
-  smallCaloriesLabel.text = caloriesStringPattern.replace("##", calories);*/
-  
+    
   smallDateLabel.text = dateString;
   smallTimeLabel.text = `${monoDigits(hours)}:${monoDigits(minutesText)}.${monoDigits(secondsText)}${amPm}`;
 }

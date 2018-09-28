@@ -1,6 +1,6 @@
 <svg class="background">
   
-  <g id="hourBits" transform="translate(10%, 20%)">
+  <g id="hourBits" transform="translate(10%, 25%)">
     <g id="hour16" transform="translate(16%, 0)">
       <circle class="hourBitCircle_On" id="hour16_On" />
       <circle class="hourBitCircle_Off" id="hour16_Off" />
@@ -28,7 +28,7 @@
     </g>
   </g>
   
-  <g id="minuteBits" transform="translate(10%, 45%)">
+  <g id="minuteBits" transform="translate(10%, 50%)">
     <g id="minute32">
       <circle class="minuteBitCircle_On" id="minute32_On" />
       <circle class="minuteBitCircle_Off" id="minute32_Off" />
@@ -72,23 +72,52 @@
       <text class="bitText" x="9" y="10">64</text>
     </g>
   </g>
-  
-  <!--
-    Color pallet from https://www.canva.com/learn/brand-color-palette/
     
-    06: Fall collection
-      cream:    #e9dccd
-      petal:    #e3bab3
-      burgundy: #613a43
-      fresh:    #849974
-      charcoal: #36384c
-  -->
+  <g id="secondBits" transform="translate(10%, 75%)">
+    <g id="second32">
+      <circle class="secondBitCircle_On" id="second32_On" />
+      <circle class="secondBitCircle_Off" id="second32_Off" />
+      <text class="bitText" x="-6" y="-1">1</text>
+      <text class="bitText">/</text>
+      <text class="bitText" x="7" y="10">2</text>
+    </g>
+     <g id="second16" transform="translate(16%, 0)">
+      <circle class="secondBitCircle_On" id="second16_On" />
+      <circle class="secondBitCircle_Off" id="second16_Off" />
+      <text class="bitText" x="-6" y="-1">1</text>
+      <text class="bitText">/</text>
+      <text class="bitText" x="7" y="10">4</text>
+    </g>
+     <g id="second8" transform="translate(32%, 0)">
+      <circle class="secondBitCircle_On" id="second8_On" />
+      <circle class="secondBitCircle_Off" id="second8_Off" />
+      <text class="bitText" x="-6" y="-1">1</text>
+      <text class="bitText">/</text>
+      <text class="bitText" x="7" y="10">8</text>
+    </g>
+     <g id="second4" transform="translate(48%, 0)">
+      <circle class="secondBitCircle_On" id="second4_On" />
+      <circle class="secondBitCircle_Off" id="second4_Off" />
+      <text class="bitText" x="-9" y="-1">1</text>
+      <text class="bitText" x="-3">/</text>
+      <text class="bitText" x="9" y="10">16</text>
+    </g>
+     <g id="second2" transform="translate(64%, 0)">
+      <circle class="secondBitCircle_On" id="second2_On" />
+      <circle class="secondBitCircle_Off" id="second2_Off" />
+      <text class="bitText" x="-9" y="-1">1</text>
+      <text class="bitText" x="-3">/</text>
+      <text class="bitText" x="9" y="10">32</text>
+    </g>
+     <g id="second1" transform="translate(80%, 0)">
+      <circle class="secondBitCircle_On" id="second1_On" />
+      <circle class="secondBitCircle_Off" id="second1_Off" />
+      <text class="bitText" x="-9" y="-1">1</text>
+      <text class="bitText" x="-3">/</text>
+      <text class="bitText" x="9" y="10">64</text>
+    </g>
+  </g>
   
   <text id="smallTime" class="tiny" />
   <text id="smallDate" class="tiny" />
-  <!--
-  <text id="smallSteps" class="tiny">## &#128694;</text>
-  <text id="smallRestingHeartRate" class="tiny">## BPM</text>
-  <text id="smallFloors" class="tiny">## Floors</text>
-  <text id="smallCalories" class="tiny">## Cals</text>-->
 </svg>

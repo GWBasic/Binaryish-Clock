@@ -1,3 +1,15 @@
+/*
+    Color pallet from https://www.canva.com/learn/brand-color-palette/
+    
+    06: Fall collection
+      cream:    #e9dccd
+      petal:    #e3bab3
+      burgundy: #613a43
+      fresh:    #849974
+      charcoal: #36384c
+*/
+
+
 .background {
   viewport-fill: #36384c;
 }
@@ -15,6 +27,16 @@
   font-family: System-Bold;
   text-length: 32;
   fill: #e9dccd;
+}
+
+.secondBitCircle_On {
+  r: 8%;
+  fill: #916A73
+}
+
+.secondBitCircle_Off {
+  r: 4%;
+  fill: #613a43
 }
 
 .minuteBitCircle_On {
@@ -60,29 +82,3 @@
   y: 20;
   text-anchor: start;
 }
-
-/*
-#smallRestingHeartRate {
-  x: 100%-10;
-  y: 50%+110;
-  text-anchor: end;
-}
-
-#smallSteps {
-  x: 10;
-  y: 50%+110;
-  text-anchor: start;
-}
-
-#smallFloors {
-  x: 10;
-  y: 50%+140;
-  text-anchor: start;
-}
-
-#smallCalories {
-  x: 100%-10;
-  y: 50%+140;
-  text-anchor: end;
-}
-*/
