@@ -1,11 +1,6 @@
 <svg class="background">
   
   <g id="hourBits" transform="translate(10%, 20%)">
-    <g id="hourPM" transform="translate(0%, 0)">
-      <circle class="hourBitCircle_On" id="hourPM_On" />
-      <circle class="hourBitCircle_Off" id="hourPM_Off" />
-      <text class="bitText">PM</text>
-    </g>
     <g id="hour16" transform="translate(16%, 0)">
       <circle class="hourBitCircle_On" id="hour16_On" />
       <circle class="hourBitCircle_Off" id="hour16_Off" />
@@ -37,32 +32,44 @@
     <g id="minute32">
       <circle class="minuteBitCircle_On" id="minute32_On" />
       <circle class="minuteBitCircle_Off" id="minute32_Off" />
-      <text class="bitText">30</text>
+      <text class="bitText" x="-6" y="-1">1</text>
+      <text class="bitText">/</text>
+      <text class="bitText" x="7" y="10">2</text>
     </g>
      <g id="minute16" transform="translate(16%, 0)">
       <circle class="minuteBitCircle_On" id="minute16_On" />
       <circle class="minuteBitCircle_Off" id="minute16_Off" />
-      <text class="bitText">15</text>
+      <text class="bitText" x="-6" y="-1">1</text>
+      <text class="bitText">/</text>
+      <text class="bitText" x="7" y="10">4</text>
     </g>
      <g id="minute8" transform="translate(32%, 0)">
       <circle class="minuteBitCircle_On" id="minute8_On" />
       <circle class="minuteBitCircle_Off" id="minute8_Off" />
-      <text class="bitText">7&frac12;</text>
+      <text class="bitText" x="-6" y="-1">1</text>
+      <text class="bitText">/</text>
+      <text class="bitText" x="7" y="10">8</text>
     </g>
      <g id="minute4" transform="translate(48%, 0)">
       <circle class="minuteBitCircle_On" id="minute4_On" />
       <circle class="minuteBitCircle_Off" id="minute4_Off" />
-      <text class="bitText">3&frac14;</text>
+      <text class="bitText" x="-9" y="-1">1</text>
+      <text class="bitText" x="-3">/</text>
+      <text class="bitText" x="9" y="10">16</text>
     </g>
      <g id="minute2" transform="translate(64%, 0)">
       <circle class="minuteBitCircle_On" id="minute2_On" />
       <circle class="minuteBitCircle_Off" id="minute2_Off" />
-      <text class="bitText">2</text>
+      <text class="bitText" x="-9" y="-1">1</text>
+      <text class="bitText" x="-3">/</text>
+      <text class="bitText" x="9" y="10">32</text>
     </g>
      <g id="minute1" transform="translate(80%, 0)">
       <circle class="minuteBitCircle_On" id="minute1_On" />
       <circle class="minuteBitCircle_Off" id="minute1_Off" />
-      <text class="bitText">1</text>
+      <text class="bitText" x="-9" y="-1">1</text>
+      <text class="bitText" x="-3">/</text>
+      <text class="bitText" x="9" y="10">64</text>
     </g>
   </g>
   
@@ -79,8 +86,9 @@
   
   <text id="smallTime" class="tiny" />
   <text id="smallDate" class="tiny" />
+  <!--
   <text id="smallSteps" class="tiny">## &#128694;</text>
   <text id="smallRestingHeartRate" class="tiny">## BPM</text>
   <text id="smallFloors" class="tiny">## Floors</text>
-  <text id="smallCalories" class="tiny">## Cals</text>
+  <text id="smallCalories" class="tiny">## Cals</text>-->
 </svg>
