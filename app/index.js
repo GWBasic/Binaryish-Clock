@@ -15,6 +15,7 @@ const smallDateLabel = document.getElementById("smallDate");
 
 const TOTAL_SECONDS_IN_MINUTE = 60;
 const TOTAL_SECONDS_IN_HOUR = 60 * 60;
+const BINARY_SECONDS_RATIO = (60 * 60) / (64 * 64);
 
 function getPowerObject(unit, power) {
   return {
@@ -74,31 +75,25 @@ function updateBits(value, bits) {
   });
 }
 
-var intervalId = null;
-display.onchange = function() { enableDisableInterval(); };
+clock.ontick = (evt) => {
+  let date = evt.date;
+  //console.log(`clock.ontick: ${date}`);
+  
+  render(date);
+}
 
-function enableDisableInterval() {
+var scheduled = false;
+function renderIfDisplayOn() {
+  scheduled = false;
   if (display.on) {
-    // Screen is on
-    render();
-    
-    // TODO: Optimize the framereate with settimeout
-    // At the end of render, schedlue 0.87890625 seconds in the future, but be smart enough
-    // to render around the middle of the bit-second. This way the risk of skew causing a bit second
-    // to show twice is low
-    setInterval(function() { render(); }, 1000 / 16);
-  } else {
-    // Screen is off
-    if (intervalId != null) {
-      clearInterval(intervalId);
-    }
+    let date = new Date();
+    //console.log(`renderIfDisplayOn: ${date}`);
+  
+    render(date);
   }
 }
 
-enableDisableInterval();
-
-function render() {
-  var date = new Date();
+function render(date) {
   let hours24 = date.getHours();
   var hours;
   var amPm;
@@ -145,6 +140,15 @@ function render() {
     
   smallDateLabel.text = dateString;
   smallTimeLabel.text = `${monoDigits(hours)}:${monoDigits(minutesText)}.${monoDigits(secondsText)}${amPm}`;
+  
+  if (!scheduled) {
+    let binarySecondFraction = 1 - (binarySeconds - Math.floor(binarySeconds));
+    let milisecondsToNextBinarySecond = 1000 * BINARY_SECONDS_RATIO * binarySecondFraction;
+    //console.log(`binarySecondFraction: ${binarySecondFraction}, milisecondsToNextBinarySecond ${milisecondsToNextBinarySecond}`);
+  
+    setTimeout(function(){ renderIfDisplayOn(); }, milisecondsToNextBinarySecond + 50);
+    scheduled = true;
+  }
 }
 
 // Convert a number to a special monospace number
