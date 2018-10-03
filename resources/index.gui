@@ -118,6 +118,6 @@
     </g>
   </g>
   
-  <text id="smallTime" class="tiny" />
-  <text id="smallDate" class="tiny" />
+  <text id="lowerRight" class="tiny" />
+  <text id="upperLeft" class="tiny" />
 </svg>
