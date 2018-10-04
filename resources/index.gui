@@ -118,6 +118,8 @@
     </g>
   </g>
   
+  <text id="lowerLeft" class="tiny" />
   <text id="lowerRight" class="tiny" />
   <text id="upperLeft" class="tiny" />
+  <text id="upperRight" class="tiny" />
 </svg>

@@ -14,14 +14,6 @@
   viewport-fill: #36384c;
 }
 
-.time {
-  font-size: 80;
-  font-family: System-Bold;
-  text-length: 32;
-  text-anchor: start;
-  fill: #e9dccd;
-}
-
 .tiny {
   font-size: 20;
   font-family: System-Bold;
@@ -69,6 +61,18 @@
 #lowerRight {
   x: 100%-10;
   y: 100%-10;
+  text-anchor: end;
+}
+
+#lowerLeft {
+  x: 10;
+  y: 100%-10;
+  text-anchor: start;
+}
+
+#upperRight {
+  x: 100%-10;
+  y: 20;
   text-anchor: end;
 }
 

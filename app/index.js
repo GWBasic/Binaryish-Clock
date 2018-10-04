@@ -2,7 +2,7 @@ import clock from "clock";
 import document from "document";
 import { preferences } from "user-settings";
 import * as fs from "fs";
-import * as util from "../common/utils";
+import * as utils from "../common/utils";
 import { today } from "user-activity";
 import { user } from "user-profile";
 import { display } from "display";
@@ -16,8 +16,13 @@ let settings = loadSettings();
 // Update the clock every second
 clock.granularity = "seconds";
 
+// Bittext elements
+const bitTextLabels = document.getElementsByClassName("bitText");
+
 // Get a handle on the <text> element
 const lowerRightLabel = document.getElementById("lowerRight");
+const lowerLeftLabel = document.getElementById("lowerLeft");
+const upperRightLabel = document.getElementById("upperRight");
 const upperLeftLabel = document.getElementById("upperLeft");
 
 const TOTAL_SECONDS_IN_MINUTE = 60;
@@ -122,6 +127,8 @@ function render(date) {
 
   // update corners
   updateCorner(date, lowerRightLabel, settings.lowerRight)
+  updateCorner(date, lowerLeftLabel, settings.lowerLeft)
+  updateCorner(date, upperRightLabel, settings.upperRight)  
   updateCorner(date, upperLeftLabel, settings.upperLeft)  
   
   if (!scheduled) {
@@ -135,6 +142,9 @@ function render(date) {
 }
 
 function updateCorner(date, label, setting) {
+  
+  var text = "";
+  
   if (setting == "time") {
     var hours24 = date.getHours();
     var hours;
@@ -151,14 +161,14 @@ function updateCorner(date, label, setting) {
       }
     } else {
       // 24h format
-      hours = util.zeroPad(hours24);
+      hours = utils.zeroPad(hours24);
       amPm = "";
     }
     
-    let minutesText = util.zeroPad(date.getMinutes());
-    let secondsText = util.zeroPad(date.getSeconds());
+    let minutesText = utils.zeroPad(date.getMinutes());
+    let secondsText = utils.zeroPad(date.getSeconds());
 
-    label.text = `${util.monoDigits(hours)}:${util.monoDigits(minutesText)}.${util.monoDigits(secondsText)}${amPm}`;
+    text = `${hours}:${minutesText}.${secondsText}${amPm}`;
 
   } else if (setting == "date") {
     var dateString = date.toString();
@@ -166,11 +176,31 @@ function updateCorner(date, label, setting) {
     var indexOfYear = dateString.indexOf(yearString);
 
     dateString = dateString.substring(0, indexOfYear + yearString.length);
-    label.text = dateString;
-  } else {
-    label.text = "";
+    text = dateString;
+  } else if (setting == "steps") {
+    var steps = `${today.local.steps || 0} steps`;
+    text = steps;
+  } else if (setting == "bpm") {
+    var bpm = `${user.restingHeartRate || "?"} bpm`;
+    text = bpm;
+  } else if (setting == "floors") {
+    var floors = `${today.local.elevationGain || 0} floors`;
+    text = floors;
+  } else if (setting == "calories") {
+   var calories = today.local.calories || 0;
+    text = `${calories} cals`;
   }
+  
+  label.text = utils.monoDigits(text);
 }
+
+function updateStylsFromSettings() {
+  bitTextLabels.forEach(function(bitTextLabel) {
+    bitTextLabel.style.visibility = settings.bitText ? "visible" : "hidden";
+  });  
+}
+
+updateStylsFromSettings();
 
 // Listen for the onmessage event
 messaging.peerSocket.onmessage = evt => {
@@ -181,8 +211,9 @@ messaging.peerSocket.onmessage = evt => {
   render(new Date());
 
   saveSettings();
+  
+  updateStylsFromSettings();
 }
-
 
 function loadSettings() {
   try {
@@ -193,8 +224,11 @@ function loadSettings() {
     // Defaults
     console.log(`Exception getting settings: ${ex}`);
     return {
-      upperLeft:"date",
-      lowerRight:"time"
+      bitText: true,
+      upperLeft: "date",
+      upperRight: null,
+      lowerLeft: null,
+      lowerRight: "time"
     };
   }
 }
