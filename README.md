@@ -3,7 +3,7 @@ A fitbit watch face that displays the time in an easy-to-read binary format.
 
 By default, the date and numeric time are displayed in the corners.
 
-![alt text](https://github.com/GWBasic/Binaryish-Clock/raw/master/src/README/Sample video.gif "Animation of the binaryish clock")
+![Animation of the binaryish clock](/README/Sample video.gif)
 
 Hours are standard binary, always in 24-hour format. (No AM/PM)
 
@@ -16,7 +16,7 @@ Seconds follow the same format, there are 64 binary seconds in a binary minute. 
 
 **The date, numeric time, and labels on the bits can be turned off.**
 
-![alt text](https://github.com/GWBasic/Binaryish-Clock/raw/master/src/README/No text.png "Binaryish clock with no text")
+![Binaryish clock with no text](/README/No%20text.png)
 
 **Steps, heart rate, floors climbed, and calories can be displayed**
 
